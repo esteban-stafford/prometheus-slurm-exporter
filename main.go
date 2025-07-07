@@ -38,7 +38,7 @@ func init() {
 
 var listenAddress = flag.String(
 	"listen-address",
-	":8080",
+	":9800",
 	"The address to listen on for HTTP requests.")
 
 var gpuAcct = flag.Bool(
