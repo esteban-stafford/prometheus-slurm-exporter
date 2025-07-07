@@ -1,0 +1,9 @@
+150,idle
+50,alloc
+20,down*
+15,mix
+10,drain
+5,idle#
+3,idle~
+2,fail
+1,maint

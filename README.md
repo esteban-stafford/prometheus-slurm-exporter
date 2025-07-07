@@ -42,6 +42,8 @@ Be aware that:
 * **Fail**: these nodes are expected to fail soon and are unavailable for use per system administrator request.
 * **Error**: nodes which are currently in an error state and not capable of running any jobs.
 * **Idle**: nodes not allocated to any jobs and thus available for use.
+* **Idle Resume**: nodes in power-saving idle state marked for resumption (idle# state).
+* **Idle Suspend**: nodes in power-saving idle state currently suspended (idle~ state).
 * **Maint**: nodes which are currently marked with the __maintenance__ flag.
 * **Mixed**: nodes which have some of their CPUs ALLOCATED while others are IDLE.
 * **Resv**: these nodes are in an advanced reservation and not generally available.

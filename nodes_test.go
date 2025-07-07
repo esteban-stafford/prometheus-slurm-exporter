@@ -31,6 +31,38 @@ func TestNodesMetrics(t *testing.T) {
 	t.Logf("%+v", ParseNodesMetrics(data))
 }
 
+func TestNodesMetricsWithIdleStates(t *testing.T) {
+	// Test with the new aggregated format that includes idle# and idle~ states
+	file, err := os.Open("test_data/sinfo_aggregated.txt")
+	if err != nil {
+		t.Fatalf("Can not open test data: %v", err)
+	}
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		t.Fatalf("Can not read test data: %v", err)
+	}
+	
+	nm := ParseNodesMetrics(data)
+	
+	// Verify basic metrics
+	if nm.idle != 150 {
+		t.Errorf("Expected idle to be 150, got %f", nm.idle)
+	}
+	if nm.alloc != 50 {
+		t.Errorf("Expected alloc to be 50, got %f", nm.alloc)
+	}
+	
+	// Verify new idle states
+	if nm.idle_resume != 5 {
+		t.Errorf("Expected idle_resume to be 5, got %f", nm.idle_resume)
+	}
+	if nm.idle_suspend != 3 {
+		t.Errorf("Expected idle_suspend to be 3, got %f", nm.idle_suspend)
+	}
+	
+	t.Logf("Result: %+v", nm)
+}
+
 func TestNodesGetMetrics(t *testing.T) {
 	t.Logf("%+v", NodesGetMetrics())
 }
